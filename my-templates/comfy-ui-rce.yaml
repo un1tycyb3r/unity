@@ -1,0 +1,18 @@
+id: comfyui-rce-v2-11
+info:
+  name: ComfyUI RCE Vulnerability Detection (V2.11)
+  author: Generated
+  severity: high
+  tags: comfyui, rce, vulnerability
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/manager/notice"
+
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "V2.11"
+

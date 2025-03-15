@@ -1,0 +1,51 @@
+id: nextjs-cache-poisoning
+
+info:
+  name: Next.js Cache Poisoning
+  author: YourName
+  severity: high
+  description: |
+    This template detects a cache-poisoning vulnerability in Next.js. Adding specific headers to requests can result in caching of unwanted responses by CDNs.
+  tags: nextjs, cache-poisoning, dos
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    headers:
+      x-middleware-prefetch: "1"
+    matchers-condition: or
+    matchers:
+      - type: header
+        part: header
+        words:
+          - "cache-control"
+      - type: header
+        part: header
+        words:
+          - "x-middleware-skip"
+
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    headers:
+      rsc: "1"
+      _rsc: "randomValue"
+    matchers-condition: and
+    matchers:
+      - type: header
+        part: header
+        words:
+          - "vary:.*rsc"
+          - "vary:.*RSC"
+
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    headers:
+      x-invoke-status: "888"
+    matchers:
+      - type: status
+        status:
+          - 888
+

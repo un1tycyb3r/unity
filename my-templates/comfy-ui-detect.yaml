@@ -1,0 +1,20 @@
+id: comfyui-endpoint-detection
+info:
+  name: ComfyUI Endpoint Detection
+  author: Generated
+  severity: low
+  tags: comfyui, detection
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}/extensions"
+      - "{{BaseURL}}/manager/notice"
+
+    matchers-condition: or
+    matchers:
+      - type: word
+        part: body
+        words:
+          - "ComfyUI"
+

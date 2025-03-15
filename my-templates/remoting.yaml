@@ -1,0 +1,32 @@
+id: dotnet-remoting-objref-leak
+info:
+  name: .NET Remoting ObjRef Leak Detection
+  author: Generated
+  severity: high
+  description: Detects leakage of ObjRefs in .NET Remoting environments by checking responses from specific endpoint requests for typical ObjRef patterns.
+  tags: dotnet, remoting, security, leak
+
+requests:
+  - method: GET
+    path: 
+      - "{{BaseURL}}/RemoteApplicationMetadata.rem?wsdl"
+    headers:
+      Content-Type: "application/octet-stream"
+      __RequestVerb: "POST"  # This may not be standard and could depend on server configuration
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - "[0-9a-f_]+/[0-9A-Za-z_+]+_\\d+\\.rem"
+
+  - method: GET
+    path: 
+      - "{{BaseURL}}/RemoteApplicationMetadata.rem?wsdl"
+    headers:
+      Content-Type: "text/xml"
+      __RequestVerb: "POST"
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - "[0-9a-f_]+/[0-9A-Za-z_+]+_\\d+\\.rem"

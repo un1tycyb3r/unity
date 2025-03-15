@@ -1,0 +1,9 @@
+1 * * * * zsh /home/un1tycyb3r/scripts/get-ip.sh
+0 */3 * * * cd /home/un1tycyb3r/wordpressAutomationPublic; python3 pullPlugins.py && python3 assessPlugins.py > logs.txt 2>&1
+0 */6 * * * cd /home/un1tycyb3r/Tools/automation/program-puller; python3 pullPrograms.py > logs.txt 2>&1
+*/5 * * * * zsh /home/un1tycyb3r/Tools/automation/master-gungnir.sh 2> /home/un1tycyb3r/Tools/automation/gungnirlogs.txt
+*/1 * * * * /usr/bin/python3 /home/un1tycyb3r/Tools/automation/organize-subs.py 2> /home/un1tycyb3r/Tools/automation/organizationlogs.txt
+*/10 * * * * zsh /home/un1tycyb3r/Tools/automation/master-webserver.sh 2> /home/un1tycyb3r/Tools/automation/webserverlogs.txt
+*/15 * * * * zsh /home/un1tycyb3r/Tools/automation/custom-nuclei-checks.sh 2> /home/un1tycyb3r/Tools/automation/nucleilogs.txt
+* */12 * * * zsh /home/un1tycyb3r/Tools/automation/cve-nuclei-checks.sh 2> /home/un1tycyb3r/Tools/automation/cvelogs.txt
+* */1 * * * zsh /home/un1tycyb3r/Tools/automation/check-dead-webservers.sh 2> /home/un1tycyb3r/Tools/automation/deadwebserverlogs.txt

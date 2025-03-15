@@ -10,7 +10,7 @@ def find_program(subdomain, program_directories):
     parts = subdomain.split('.')
     if len(parts) < 2:
         return None
-
+    
     # Create the indices to compare
     indices = [
         '.'.join(parts[-2:]),    # last 2 parts
@@ -42,6 +42,8 @@ def main(subdomains_file, programs_root):
             print(f"Subdomain {subdomain} does not match any program roots.")
 
 if __name__ == '__main__':
-    programs_root = '/root/projects'                # The root directory containing program folders
+    programs_root = '/home/un1tycyb3r/bugbounty'                # The root directory containing program folders
     subdomains_file = f'{programs_root}/results.txt'  # Path to your subdomains file
     main(subdomains_file, programs_root)
+
+
